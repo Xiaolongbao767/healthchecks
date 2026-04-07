@@ -70,8 +70,15 @@
         <input
             id="search"
             type="text"
+            placeholder="Search..."
             class="form-control"
             value="{{ search }}">
+            <button onclick="clearSearch()" name="button">X</button>
+            <script>
+                function clearSearch() {
+                    console.log("HELLO WORLD!")
+                }
+            </script>
         <div id="filters" class="input-group-btn">
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                 <span class="caret"></span>
