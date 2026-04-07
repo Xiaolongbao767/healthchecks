@@ -73,17 +73,15 @@
             placeholder="Search..."
             class="form-control"
             value="{{ search }}">
-<<<<<<< Updated upstream
-            <button onclick="clearSearch()" name="button">X</button>
-            <script>
-                function clearSearch() {
-                    console.log("HELLO WORLD!")
-                }
-            </script>
-=======
-        <button onclick="clearSearch()" name="button">X</button>
 
->>>>>>> Stashed changes
+        <span class="input-group-btn">
+        <button
+                id="search-clear"
+                type="button"
+                class="btn btn-default"
+                style="display: none;">×</button>
+        </span>
+
         <div id="filters" class="input-group-btn">
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                 <span class="caret"></span>

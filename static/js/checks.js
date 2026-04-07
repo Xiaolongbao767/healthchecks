@@ -192,12 +192,16 @@ $(function () {
     });
 
     // User changes the search string: apply filters
-    $("#search").keyup(applyFilters);
+    $("#search").keyup(function() {
+        $("#search-clear").toggle($(this).val().length > 0);
+        applyFilters();
+    });
 
-    window.clearSearch = function() {
-            $("#search").val("");
-            applyFilters();
-        };
+    $("#search-clear").click(function() {
+        $("#search").val("").focus();
+        $(this).hide();
+        applyFilters();
+    });
 
     function switchUrlFormat(format) {
         var url = new URL(window.location.href);
