@@ -208,3 +208,12 @@ class MyChecksTestCase(BaseTestCase):
 
         self.assertContains(r, 'data-timeout="123"')
         self.assertContains(r, 'data-grace="456"')
+
+    def test_search_clear_button(self) -> None:
+        self.client.login(username="alice@example.org", password="password")
+        r = self.client.get(self.url)
+
+        #test button exists on page
+        self.assertContains(r, 'id="search-clear"')
+        #test button is disabled when no search term is present
+        self.assertContains(r, 'style="display: none;"')

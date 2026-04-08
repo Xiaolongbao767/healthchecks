@@ -143,4 +143,4 @@ class AddCheckTestCase(BaseTestCase):
 
         self.client.login(username="alice@example.org", password="password")
         r = self.client.post(self.url, self._payload())
-        self.assertEqual(r.status_code, 400)
+        self.assertEqual(r.status_code, 400)        
