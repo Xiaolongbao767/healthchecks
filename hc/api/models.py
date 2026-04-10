@@ -289,6 +289,23 @@ class Check(models.Model):
             return self.last_duration
         return None
 
+    def duration_stats(self) -> dict | None:
+        pings = list(self.visible_pings.order_by("-id"))
+        prepare_durations(pings)
+        durations = [
+            p.duration.total_seconds()
+            for p in pings
+            if p.duration is not None
+        ]
+        if not durations:
+            return None
+        return {
+            "avg": sum(durations) / len(durations),
+            "min": min(durations),
+            "max": max(durations),
+            "count": len(durations),
+        }
+
     def get_grace_start(self, *, with_started: bool = True) -> datetime | None:
         """Return the datetime when the grace period starts.
 
