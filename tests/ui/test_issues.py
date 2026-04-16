@@ -25,13 +25,19 @@ def test_clear_search_button(page: Page):
 
     expect(page.locator("#check-filters")).to_be_visible()
 
-    expect(page.locator("#search-clear")).to_be_hidden()
+    search_group = page.locator("#search-group").first
+    search_input = search_group.locator("#search")
+    clear_button = search_group.locator("#search-clear")
 
-    page.locator("#search").click()
+    expect(clear_button).to_be_hidden()
+
+    search_input.click()
     page.keyboard.type("test")
-    expect(page.locator("#search-clear")).to_be_visible()
+    expect(search_input).to_have_value("test")
+    
+    expect(clear_button).to_be_visible()
 
-    page.locator("#search-clear").click()
-    expect(page.locator("#search")).to_have_value("")
+    clear_button.click()
+    expect(search_input).to_have_value("")
 
-    expect(page.locator("#search-clear")).to_be_hidden()
+    expect(clear_button).to_be_hidden()
