@@ -1278,9 +1278,7 @@ def update_channel_name(request: AuthenticatedHttpRequest, code: UUID) -> HttpRe
 
 @require_POST
 @login_required
-def send_test_notification(
-    request: AuthenticatedHttpRequest, code: UUID
-) -> HttpResponse:
+def send_test_notification(request: AuthenticatedHttpRequest, code: UUID) -> HttpResponse:
     channel, rw = _get_channel_for_user(request, code)
 
     dummy = Check(name="TEST", status="down", project=channel.project)
