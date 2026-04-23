@@ -156,34 +156,6 @@
             Add Check
         </button>
     {% endif %}
-    <label onclick="onSubjectFilterToggle()" class="checkbox-container">
-        <input
-            type="checkbox"
-            name="filter_subject"
-            value="true"
-            {% if form.down.value %} checked {% endif %}>
-        <span class="checkmark"></span>
-        Filter by keywords in the Subject line
-    </label>
-    <label onclick="onMessageBodyToggle()" class="checkbox-container">
-        <input
-            type="checkbox"
-            name="filter_message"
-            value="true"
-            {% if form.down.value %} checked {% endif %}>
-        <span class="checkmark"></span>
-        Filter by keywords in the Message Body
-    </label>
-    <script>
-        function onMessageBodyToggle() {
-            console.log("option filter has been toggled")
-        }
-    </script>
-    <script>
-        function onSubjectFilterToggle() {
-            console.log("option subject has been toggled")
-        }
-    </script>
 </div>
 
 
