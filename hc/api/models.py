@@ -43,6 +43,8 @@ CHECK_KINDS = (("simple", "Simple"), ("cron", "Cron"), ("oncalendar", "OnCalenda
 MAX_DURATION = td(hours=72)
 REASONS = (("", "Unknown"), ("timeout", "Timeout"), ("fail", "Fail signal"))
 
+EMAIL = ""
+
 
 TRANSPORTS: dict[str, tuple[str, type[transports.Transport] | str]] = {
     "apprise": ("Apprise", "hc.integrations.apprise.transport.Apprise"),
