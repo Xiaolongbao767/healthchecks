@@ -215,40 +215,25 @@
 
                 </div>
 
-             <div class="form-group">
-                <label for="start_kw" class="col-sm-4 control-label">
-                    keywords (subject line)
-                </label>
-                 <div class="col-sm-7">
-                            <input
-                                id="start_kw"
-                                name="start_kw"
-                                type="text"
-                                maxlength="200"
-                                value="{{ check.start_kw }}"
+             <form>
+              <label for="email"> keywords (subject line) </label>
+              <input type="text" id="email" name="email"><br><br>
+              <label for="message"> keywords (message body) </label>
+              <input type="text" id="message" name="message"><br><br>
+            </form>
 
-                                class="form-control filter-kw" />
-                        </div>
-                    </div>
-            <div class="form-group">
-                <label for="start_kw" class="col-sm-4 control-label">
-                    keywords (message body)
-                </label>
-                 <div class="col-sm-7">
-                            <input
-                                id="start_kw"
-                                name="start_kw"
-                                type="text"
-                                maxlength="200"
-                                value="{{ check.start_kw }}"
-
-                                class="form-control filter-kw" />
-                        </div>
-                    </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="submit" class="btn btn-primary" onclick=emailFilters()>Save</button>
                 </div>
+                <script>
+                    function emailFilters() {
+                        var emailFilterValue = document.getElementById("filtering-rules-modal").getElementsByClassName("modal-dialog")[0].getElementsByClassName("modal-content")[0].children[8].value
+                        var messageFilterValue = document.getElementById("filtering-rules-modal").getElementsByClassName("modal-dialog")[0].getElementsByClassName("modal-content")[0].children[12].value
+                        console.log(emailFilterValue + " " + messageFilterValue);
+                        console.log("");
+                    }
+                </script>
             </div>
         </form>
     </div>
