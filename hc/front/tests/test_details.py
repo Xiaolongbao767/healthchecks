@@ -333,3 +333,31 @@ class DetailsTestCase(BaseTestCase):
         self.assertContains(r, "Avg Downtime", status_code=200)
         self.assertContains(r, "2 h 0 min")
         self.assertContains(r, "Total Incidents")
+
+    # test avg execution time added to deatils page
+    def test_it_shows_avg_execution_time(self) -> None:
+        # 1st ping (2 secs)
+        Ping.objects.create(owner=self.check, created=datetime(2020, 1, 1, 12, 0, 0, tzinfo=timezone.utc),
+                            n=1, kind="start",)
+        Ping.objects.create(owner=self.check, created=datetime(2020, 1, 1, 12, 0, 2, tzinfo=timezone.utc),
+                            n=2, kind=None,)
+        
+        # 2nd ping (6 secs)
+        Ping.objects.create(owner=self.check, created=datetime(2020, 1, 1, 13, 0, 0, tzinfo=timezone.utc),
+                            n=3, kind="start",)
+        Ping.objects.create(owner=self.check, created=datetime(2020, 1, 1, 13, 0, 6, tzinfo=timezone.utc),
+                            n=4, kind=None,)
+        
+        self.client.login(username="alice@example.org", password="password")
+        r = self.client.get(self.url)
+
+        self.assertContains(r, "Avg Runtime", status_code=200)
+        self.assertContains(r, "Min Runtime")
+        self.assertContains(r, "Max Runtime")
+        self.assertContains(r, "Samples")
+
+        #print(self.check.duration_stats())
+        self.assertContains(r, "4.0s")
+        self.assertContains(r, "2.0s")
+        self.assertContains(r, "6.0s")
+        self.assertContains(r, "2")
